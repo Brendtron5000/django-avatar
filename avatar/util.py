@@ -29,7 +29,9 @@ cached_funcs = set()
 
 def get_username(user):
     """ Return username of a User instance """
-    if hasattr(user, 'get_username'):
+    if settings.AVATAR_USE_USER_ID:
+        return str(user.pk)
+    elif hasattr(user, 'get_username'):
         return user.get_username()
     else:
         return user.username
